@@ -14,7 +14,7 @@ export default function TodoList(props) {
         <ul style={styles.ul}>
             {
                 props.todos.map((t, index) => {
-                    return <TodoItem todo={t} key={t.id} index={index} />
+                    return <TodoItem todo={t} key={t.id} index={index} onChange={props.onToggle} />
                 })
             }
         </ul>

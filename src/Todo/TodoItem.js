@@ -1,14 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
+import Context from "../context"
 
-export default function TodoItem({todo, index}) {
+export default function TodoItem({todo, index, onChange}) {
+    const {removeTodo} = useContext(Context);
+
+    const classes = [];
+    if(todo.completed) {
+        classes.push("done");
+    }
+
     return (
         <li>
-            <span>
-                <input type="checkbox" />
+            <span className={classes.join(" ")}>
+                <input type="checkbox" checked={todo.completed} onChange={() => onChange(todo.id)} />
                 <strong>{++index}</strong>&nbsp;
                 {todo.title}
             </span>
-            <button>&times;</button>
+            <button onClick={removeTodo.bind(null, todo.id)}>&times;</button>
         </li>
     )
 }
